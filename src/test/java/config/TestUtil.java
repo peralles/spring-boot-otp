@@ -3,8 +3,9 @@ package config;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.starter.springboot.utils.JSR310DateTimeSerializer;
-import com.starter.springboot.utils.JSR310LocalDateDeserializer;
+import com.peralles.authenticator.utils.JSR310DateTimeSerializer;
+import com.peralles.authenticator.utils.JSR310LocalDateDeserializer;
+
 import org.springframework.http.MediaType;
 
 import java.io.IOException;
@@ -25,13 +26,12 @@ public class TestUtil {
      * Convert an object to JSON byte array.
      *
      * @param object
-     *            the object to convert
+     *               the object to convert
      * @return the JSON byte array
      * @throws IOException
      */
     public static byte[] convertObjectToJsonBytes(Object object)
-            throws IOException
-    {
+            throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
@@ -52,8 +52,7 @@ public class TestUtil {
      * @param size the size of the byte array
      * @param data the data to put in the byte array
      */
-    public static byte[] createByteArray(int size, String data)
-    {
+    public static byte[] createByteArray(int size, String data) {
         byte[] byteArray = new byte[size];
         for (int i = 0; i < size; i++) {
             byteArray[i] = Byte.parseByte(data, 2);
