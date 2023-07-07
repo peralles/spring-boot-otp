@@ -7,6 +7,7 @@
 /out/
 .idea
 
+target/
 
 *.iml
 modules.xml
@@ -29,3 +30,5 @@ modules.xml
 
 # virtual machine crash logs
 hs_err_pid*
+.DS_Store
+
