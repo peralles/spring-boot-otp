@@ -3,8 +3,9 @@ package com.peralles.authenticator.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -30,16 +31,12 @@ public class SecurityConfiguration {
     @Autowired
     private TokenProvider tokenProvider;
 
+    @Autowired
+    private AuthenticationManagerBuilder auth;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
     }
 
     @Bean
@@ -80,4 +77,24 @@ public class SecurityConfiguration {
     public SecurityEvaluationContextExtension securityEvaluationContextExtension() {
         return new SecurityEvaluationContextExtension();
     }
+
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder());
+
+        return authProvider;
+    }
+    /**
+     * @Bean
+     *       public AuthenticationManager authenticationManager() throws Exception {
+     *       this.auth
+     *       .userDetailsService(userDetailsService)
+     *       .passwordEncoder(passwordEncoder());
+     * 
+     *       return auth.getOrBuild();
+     *       }
+     */
 }

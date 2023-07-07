@@ -1,11 +1,12 @@
 package com.peralles.authenticator.utils;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.Date;
+
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 public final class JSR310PersistenceConverters {
 

@@ -1,13 +1,14 @@
 package com.peralles.authenticator.converters;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 @Converter
 public class LocalDateToUtilDateConverter implements AttributeConverter<LocalDate, Date> {
